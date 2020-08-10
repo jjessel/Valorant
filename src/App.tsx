@@ -1,21 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from './Views/Header';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Agents from './Views/Agents';
+import Maps from './Views/Maps';
+import Weapons from './Views/Weapons';
 import './App.css';
+import background from './images/background.jpg';
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <Router>
+            <main>
+                <div className="root">
+                    <Header items={['Maps', 'Weapons', 'Agents']} />
+                </div>
+                <Route path="/" exact component={Home} />
+                <Route path="/weapons" component={Weapons} />
+                <Route path="/agents" component={Agents} />
+                <Route path="/maps" component={Maps} />
+            </main>
+        </Router>
     );
 }
 
 export default App;
+
+function Home() {
+    return (
+        <div className="content">
+            <img className="background" src={background} alt="Valorant Background" />
+        </div>
+    );
+}
